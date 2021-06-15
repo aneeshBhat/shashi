@@ -6,7 +6,7 @@
 
     <div class="profile">
       <img src="assets/imgs/logo.jpg" alt="" class="img-fluid rounded-circle">
-      <h1 class="text-light"><a href="index.html"> Sashidhar</a></h1>
+      <h1 class="text-light"><a href="index.html">Shashidhar</a></h1>
       <div class="social-links mt-3 text-center">
         <a href="https://youtube.com/channel/UC2FUmIe21YpDlO7ljDLe4Vg" class="twitter"><i class="bx bxl-youtube"></i></a>
         <a href="https://www.facebook.com/acharyaartworks/" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -308,31 +308,41 @@
       </div>
 
       <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form  [formGroup]="registerEmail" role="form" class="php-email-form">
+          <!-- action="forms/contact.php" method="post" -->
           <div class="row">
             <div class="form-group col-md-6">
               <label for="name">Your Name</label>
-              <input type="text" name="name" class="form-control" id="name" required>
+              <input type="text"  formControlName="name" name="name" class="form-control" id="name" required>
+              <span [ngStyle]="{'color':'red'}" *ngIf="f.name.errors?.required && submitted" >Name is Required.</span>
+          <!-- <span [ngStyle]="{'color':'red'}" *ngIf="f.email.errors?.pattern && !f.email.valid" >Invalid Email!</span> -->
+          
             </div>
             <div class="form-group col-md-6">
               <label for="name">Your Email</label>
-              <input type="email" class="form-control" name="email" id="email" required>
+              <input type="email"  formControlName="email" class="form-control" name="email" id="email" required>
+              <span [ngStyle]="{'color':'red'}" *ngIf="f.email.errors?.required && submitted" >Email is Required.</span>
+          <span [ngStyle]="{'color':'red'}" *ngIf="f.email.errors?.pattern && !f.email.valid " >Invalid Email!</span>
+          <span [ngStyle]="{'color':'green'}" *ngIf="f.email.valid">Valid*</span>
+          
             </div>
           </div>
           <div class="form-group">
             <label for="name">Subject</label>
-            <input type="text" class="form-control" name="subject" id="subject" required>
+            <input type="text" formControlName="subject" class="form-control" name="subject" id="subject" required>
+            <span [ngStyle]="{'color':'red'}" *ngIf="f.subject.errors?.required && submitted" >Subject is Required.</span>
           </div>
           <div class="form-group">
             <label for="name">Message</label>
-            <textarea class="form-control" name="message" rows="10" required></textarea>
+            <textarea formControlName="message" class="form-control" name="message" rows="10" required></textarea>
+            <span [ngStyle]="{'color':'red'}" *ngIf="f.message.errors?.required && submitted" >Message is Required.</span>
           </div>
           <div class="my-3">
             <div class="loading">Loading</div>
             <div class="error-message"></div>
             <div class="sent-message">Your message has been sent. Thank you!</div>
           </div>
-          <div class="text-center"><button type="submit">Send Message</button></div>
+          <div class="text-center"><button type="submit" (click)="submitForm()">Send Message</button></div>
         </form>
       </div>
 
