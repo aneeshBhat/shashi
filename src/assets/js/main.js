@@ -84,7 +84,7 @@
       }
     }
     window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
+    onscroll(document, toggleBacktotop) 
   }
 
   /**

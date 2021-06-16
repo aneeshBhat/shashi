@@ -90,7 +90,6 @@ export class PortfolioComponent implements OnInit {
  this.registerEmail = this.formBuilder.group({
    name:['',[Validators.required]],
     email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-    subject:['',[Validators.required]],
     message:['',[Validators.required]]
     });
 
